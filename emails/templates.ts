@@ -1,7 +1,7 @@
 import { Application } from '../types';
 import { format } from 'date-fns';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-domain.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://ngo-scholarship-git-main-pgshejul24-cmds-projects.vercel.app';
 
 export function adminNotificationEmail(app: Application, score: number): string {
   const approveUrl = `${BASE_URL}/api/approve?id=${app.id}&token=${app.approval_token}`;
