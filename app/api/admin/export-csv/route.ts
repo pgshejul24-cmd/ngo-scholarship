@@ -3,14 +3,13 @@
 // Export applications as CSV for offline analysis.
 // Protected: requires admin auth session.
 // ============================================================
-
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseServerClient, createSupabaseAdminClient } from '@/lib/supabase/server';
+import { createClient, createAdminClient } from '@/lib/supabase/server';
 import { Application } from '@/types/database';
 
 export async function GET(req: NextRequest) {
   // Auth check
-  const supabaseAuth = createSupabaseServerClient();
+  const supabaseAuth = createClient();
   const { data: { user } } = await supabaseAuth.auth.getUser();
   
   if (!user) {
@@ -20,7 +19,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get('status');
 
-  const supabase = createSupabaseAdminClient();
+  const supabase = createAdminClient();
   
   let query = supabase
     .from('applications')

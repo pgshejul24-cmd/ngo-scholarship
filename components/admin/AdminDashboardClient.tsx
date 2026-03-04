@@ -148,7 +148,7 @@ export default function AdminDashboardClient({ user, stats }: { user: any; stats
                     <td className="px-4 py-3">₹{Number(app.income).toLocaleString('en-IN')}</td>
                     <td className="px-4 py-3">₹{Number(app.amount_requested).toLocaleString('en-IN')}</td>
                     <td className="px-4 py-3">
-                      <span className={`font-bold ${app.score >= 70 ? 'text-green-700' : app.score >= 40 ? 'text-amber-700' : 'text-red-700'}`}>
+                      <span className={`font-bold ${(app.score ?? 0) >= 70 ? 'text-green-700' : (app.score ?? 0) >= 40 ? 'text-amber-700' : 'text-red-700'}`}>
                         {app.score ?? '-'}
                       </span>
                     </td>

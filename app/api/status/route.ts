@@ -3,7 +3,7 @@
 // Returns minimal info - no sensitive data exposed.
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/server';
 import { z } from 'zod';
 
 const schema = z.object({ id: z.string().uuid() });
@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid application ID format' }, { status: 400 });
   }
 
-  const supabase = createSupabaseAdminClient();
+  const supabase = createAdminClient();
   
   const { data, error } = await supabase
     .from('applications')
